@@ -5,6 +5,7 @@ import numpy as np
 # from src.exception import CustomException
 # import sys
 import joblib
+from lime.lime_tabular import LimeTabularExplainer
 
 # initialize the flask app
 app = Flask(__name__, template_folder="templates")
@@ -12,6 +13,11 @@ model = pickle.load(open("final_model_prediction.pkl", "rb"))
 # scalar = pickle.load(open("StandardScaler.pkl","rb"))
 scalar = joblib.load("StandardScaler.pkl")
 
+X_train = pd.read_csv("D:\STUDY\Hackathon\PROJECT\Rajasthan_hackathon\src\Data\train.csv")
+X_test = pd.read_csv("D:\STUDY\Hackathon\PROJECT\Rajasthan_hackathon\src\Data\test.csv")
+class_names = ['Fraud', 'NotFraud']
+feature_names = list(X_train.columns)
+explainer = LimeTabularExplainer(X_train.values, feature_names=feature_names, class_names = class_names, mode = 'classification')
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
@@ -39,7 +45,11 @@ def predict():
         result = "Current Transaction is not fraud!!"
     else:
         result = "Current Transaction is fraud!!"
-    return render_template("index.html",prediction_text=result)
+
+    exp = explainer.explain_instance(X_test.iloc[100], model.predict_proba)
+    exp = exp.as_html()
+    
+    return render_template("index.html",prediction_text=result, exp=exp)
 
 if __name__ == '__main__':
     app.run(debug=True)
