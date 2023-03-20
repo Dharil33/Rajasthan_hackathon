@@ -1,114 +1,62 @@
 <!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <style>
-            body
-            {
-                background-color: #cffff0;
-                font-family: "Lucida Console", "Courier New", monospace;
-            }
-            fieldset
-            {
-                background-color : #ffffb2;
-                width : 400px;
-                margin-left: auto;
-                margin-right: auto;
-                text-align: left;
-                border: 5px groove;
-                font-size: 20px;
-            }
-            legend
-            {
-                background-color : #d4ffdd;
-                color : green;
-                padding: 5px 10px;
-            }
-            input
-            {
-                margin-left : 100px;
-                margin-top : 15px;
-                margin-bottom : 15px;
-                width : 250px ;
-                height : 20px;
-                font-size: 18px;
-            }
-            .button
-            {
-                background-color:  	#64dbae ;
-                color: black;
-                padding: 15px 32px;
-                text-align: center;
-                text-decoration: none;
-                display: inline-block;
-                font-size: 16px;
-                margin: 10px 150px;
-                cursor: pointer;
-            }
-            .p
-            {
-                text-align: center;
-                font-size: 25px;
-            }
-        </style>
-        <title>Diabetes Detection</title>
+<html>
+<head>
+    <link rel="stylesheet" href="E:\Hackathon\Rajasthan_hackathon\static\style.css">
+    <title>AI Based Financial Fraud Detection</title>
+</head>
+  
+<body>
+    <div class="main">
+    <div class="fraud">
+        <h2>AI Based Financial Fraud Detection</h2>
+        <br>
+        <form id="register" method="post">
+        &nbsp&nbsp&nbsp<label><b><align="left">Amount :</align></b></label>
+        <br>
+        &nbsp&nbsp<align="left">    
+        <input type="text" size="35" name="amount"  placeholder="Enter your transaction amount">
+        </align>
+        <br><br>
 
-    </head>
-    <body>
-    <h1 style="text-align: center">Fraud Prediction and Detection </h1>
-    <br>
-    <form method="post" action="{{url_for('predict')}}">
-        <fieldset>
-            <legend> Fraud Prediction : </legend>
-            <br>
-            <label for="type">Type</label>
-            <br>
-            <label>
-                <input type="text" name="type" placeholder="CASH-IN, CASH-OUT, DEBIT, PAYMENT and TRANSFER">
-            </label>
-            <br>
-            <label for="amount">Amount</label>
-            <br>
-            <label>
-                <input type="text" name="amount" placeholder="transaction in local currency">
-            </label>
-            <br>
-            <label for="oldbalanceOrg">oldbalanceOrg</label>
-            <br>
-            <label>
-                <input type="text" name="oldbalanceOrg" placeholder="initial balance before the transaction">
-            </label>
-            <br>
-            <label for="newbalanceOrig">newbalanceOrig</label>
-            <br>
-            <label>
-                <input type="text" name="newbalanceOrig" placeholder="customer's balance after the transaction">
-            </label>
-            <br>
-            <label for="oldbalanceDest">oldbalanceDest</label>
-            <br>
-            <label>
-                <input type="text" name="oldbalanceDest" placeholder="initial recipient balance before the transaction.">
-            </label>
-            <br>
-            <label for="newbalanceDest">newbalanceDest</label>
-            <br>
-            <label>
-                <input type="text" name="newbalanceDest" placeholder="recipient's balance after the transaction.">
-            </label>
-            <br>
-            <button type="submit" class="button" style="align-self: center">Predict</button>
-
-        </fieldset>
-    </form>
-    <br>
-    <br>
+        &nbsp&nbsp&nbsp<label><align="left"><b>Sender's Initial Balance  :</align></b></label>
+        <br>
+        &nbsp&nbsp<align="left"><input type="text" size="35" name="oldbalanceOrg" placeholder="Enter your initial balance before transaction">
+        </align>
+        <br><br>
+            
+        &nbsp&nbsp&nbsp<label><align="left"><b>Sender's New balance :</align></b></label>
+        <br>
+        &nbsp&nbsp<input type="text"  size="35" name="newbalanceOrig" placeholder="Enter your new balance">
+        <br><br>
+            
+        &nbsp&nbsp&nbsp<label><align><b>Receiver's Initial Balance :</align></b></label>
+        <br>
+        &nbsp&nbsp<input type="text" size="35" name="oldbalanceDest" placeholder="Enter your initial balance recipient">
+        <br><br>
+            
+        &nbsp&nbsp&nbsp<label><align><b>Receiver's New Balance :</align></b></label>
+        <br>
+        &nbsp&nbsp<input type="text" size="35" name="newbalanceDest" placeholder="Enter your new balance recipient">
+        <br><br>
+            
+        &nbsp&nbsp&nbsp<label><align><b>Payment Mode :</align></b></label>
+        <br>
+        &nbsp&nbsp<input type="text" size="35" name="type" placeholder="Enter your payment mode">
+        <br><br>
+            
+        <center><input type="submit" value="Submit" name="submit" id="submit" class="button1"></center>
+        <br>
+        
+        </form>
+            
+    </div><!--end of fraud-->
+    </div><!--end of main-->
 
     <p class="p">
         {{ prediction_text }}
+        <div class = "container">
+            {{ exp|safe }}
+        </div>
     </p>
-
-
-    </body>
+</body>
 </html>
