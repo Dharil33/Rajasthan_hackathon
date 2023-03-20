@@ -9,12 +9,12 @@ from lime.lime_tabular import LimeTabularExplainer
 
 # initialize the flask app
 app = Flask(__name__, template_folder="templates")
-model = pickle.load(open("project\Rajasthan_hackathon\\final_model_prediction.pkl", "rb"))
+model = pickle.load(open("final_model_prediction.pkl", "rb"))
 # scalar = pickle.load(open("StandardScaler.pkl","rb"))
-scalar = joblib.load("project\Rajasthan_hackathon\StandardScaler.pkl")
+scalar = joblib.load("StandardScaler.pkl")
 
-X_train = pd.read_csv("../src/Data/train.csv")
-X_test = pd.read_csv("../src/Data/test.csv")
+X_train = pd.read_csv("src/Data/train.csv")
+X_test = pd.read_csv("src/Data/test.csv")
 class_names = ['Fraud', 'NotFraud']
 feature_names = list(X_train.columns)
 explainer = LimeTabularExplainer(X_train.values, feature_names=feature_names, class_names = class_names, mode = 'classification')
@@ -49,7 +49,7 @@ def predict():
     exp = explainer.explain_instance(X_test.iloc[100], model.predict_proba)
     exp = exp.as_html()
     
-    return render_template("index.html",prediction_text=result, exp=exp)
+    return render_template("result.html",prediction_text=result, exp=exp)
 
 if __name__ == '__main__':
     app.run(debug=True)

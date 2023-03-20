@@ -2,15 +2,15 @@
 <html>
 <head>
     <link rel="stylesheet" href="../static/style.css">
-    <title>AI Based Financial Fraud Detection</title>
+    <title>Explainable AI Based Fraud Prediction and Detection</title>
 </head>
   
 <body>
     <div class="main">
     <div class="fraud">
-        <h2>AI Based Financial Fraud Detection</h2>
+        <h2>Explainable AI Based Fraud Prediction and Detection</h2>
         <br>
-        <form id="register" method="post">
+        <form id="register" action="{{url_for('predict')}}" method="post">
         &nbsp&nbsp&nbsp<label><b><align="left">Amount :</align></b></label>
         <br>
         &nbsp&nbsp<align="left">    
@@ -44,7 +44,7 @@
         &nbsp&nbsp<input type="text" size="35" name="type" placeholder="Enter your payment mode">
         <br><br>
             
-        <center><input type="submit" value="Submit" name="submit" id="submit" class="button1"></center>
+        <center><button type="submit" class="button1">Submit</button></center>
         <br>
         
         </form>
@@ -52,11 +52,5 @@
     </div><!--end of fraud-->
     </div><!--end of main-->
 
-    <p class="p">
-        {{ prediction_text }}
-        <div class = "container">
-            {{ exp|safe }}
-        </div>
-    </p>
 </body>
 </html>
