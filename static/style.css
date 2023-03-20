@@ -3,7 +3,7 @@
     padding: 0;
 }
 body{
-    background: url("E:\\Hackathon\\Rajasthan_hackathon\\static\\blue.jpg");
+    background: url("../static/blue.jpg");
     background-repeat: no-repeat;
     background-size: cover;
 }
