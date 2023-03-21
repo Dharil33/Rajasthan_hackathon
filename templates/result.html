@@ -1,7 +1,15 @@
 <html>
+    <head>
+        <link rel="stylesheet" href="../static/style.css">
+        <title>Explainable AI Based Fraud Prediction and Detection</title>
+    </head>
     <body>
         <p class="p">
-            {{ prediction_text }}
+            <div class="main">
+                <h2>{{ prediction_text }}</h2>
+            </div>
+            <p><h3><center>The following is the output of Explainable AI: </center></h3></p>
+            <br><br><br><br>
             {{ exp|safe }}
         </p>
     </body>

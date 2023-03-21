@@ -42,9 +42,9 @@ def predict():
     print(final_input)
     output=model.predict(final_input)[0]
     if output == 0:
-        result = "Current Transaction is not fraud!!"
+        result = "Current Transaction is Not Fraud!!"
     else:
-        result = "Current Transaction is fraud!!"
+        result = "Current Transaction is Fraud!!"
 
     exp = explainer.explain_instance(X_test.iloc[100], model.predict_proba)
     exp = exp.as_html()
